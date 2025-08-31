@@ -1,10 +1,12 @@
 import google.generativeai as genai
 import streamlit as st
 import os
-from API import api
 import json
 from datetime import datetime
+from dotenv import load_dotenv
 
+# load environment variables from .env
+load_dotenv()
 
 class CustomerSupportAssistant:
     def __init__(self):
@@ -13,9 +15,10 @@ class CustomerSupportAssistant:
         
     def setup_gemini(self):
         """Configure Gemini API"""
-        api_key = api
-        if not api :
-            st.error("❌ Gemini API key not found.")
+        # Read API key from environment variables (from .env)
+        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY") or os.getenv("GEMINI_KEY")
+        if not api_key:
+            st.error("❌ Gemini API key not found. Please set GEMINI_API_KEY in your .env file.")
             st.stop()
         
         genai.configure(api_key=api_key)
