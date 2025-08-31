@@ -17,6 +17,9 @@ class CustomerSupportAssistant:
         api_key = None
         if not api_key:
             api_key = st.secrets.get("GEMINI_API_KEY")
+        if not api_key:
+            st.error("❌ Gemini API key not found. Add GEMINI_API_KEY to Streamlit Secrets or environment variables.")
+            st.stop()
         
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
