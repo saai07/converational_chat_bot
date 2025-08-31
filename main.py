@@ -3,10 +3,9 @@ import streamlit as st
 import os
 import json
 from datetime import datetime
-from dotenv import load_dotenv
 
-# load environment variables from .env
-load_dotenv()
+
+
 
 class CustomerSupportAssistant:
     def __init__(self):
@@ -15,11 +14,9 @@ class CustomerSupportAssistant:
         
     def setup_gemini(self):
         """Configure Gemini API"""
-        # Read API key from environment variables (from .env)
-        api_key = os.getenv("GEMINI_API_KEY") or os.getenv("API_KEY") or os.getenv("GEMINI_KEY")
+        api_key = None
         if not api_key:
-            st.error("❌ Gemini API key not found. Please set GEMINI_API_KEY in your .env file.")
-            st.stop()
+            api_key = st.secrets.get("GEMINI_API_KEY")
         
         genai.configure(api_key=api_key)
         self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
