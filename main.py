@@ -123,7 +123,7 @@ class CustomerSupportAssistant:
             return response.text
             
         except Exception as e:
-            return f"❌ Sorry, I'm experiencing technical difficulties. Please try again later. Error: {str(e)}"
+            return f" Sorry, I'm experiencing technical difficulties. Please try again later. Error: {str(e)}"
     
     def get_conversation_history(self):
         """Get recent conversation history for context"""
