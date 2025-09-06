@@ -18,11 +18,11 @@ class CustomerSupportAssistant:
         if not api_key:
             api_key = st.secrets.get("GEMINI_API_KEY")
         if not api_key:
-            st.error("❌ Gemini API key not found. Add GEMINI_API_KEY to Streamlit Secrets or environment variables.")
+            st.error(" key not found")
             st.stop()
         
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel('gemini-1.5-flash-latest')
+        self.model = genai.GenerativeModel('model')
         self.chat = self.model.start_chat(history=[])
         
     def setup_ui(self):
@@ -105,7 +105,7 @@ class CustomerSupportAssistant:
         """
     
     def get_gemini_response(self, prompt):
-        """Get response from Gemini API with company context"""
+        """Get response from API with company context"""
         try:
             company_context = self.get_company_context()
             
