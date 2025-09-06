@@ -22,7 +22,7 @@ class CustomerSupportAssistant:
             st.stop()
         
         genai.configure(api_key=api_key)
-        self.model = genai.GenerativeModel(model)
+        self.model = genai.GenerativeModel("gemini-1.5-flash-latest")
         self.chat = self.model.start_chat(history=[])
         
     def setup_ui(self):
